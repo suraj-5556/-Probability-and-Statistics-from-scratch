@@ -1,0 +1,24 @@
+import math
+
+def binomial_probability(n, k, p):
+	"""
+    Calculate the probability of achieving exactly k successes in n independent Bernoulli trials,
+    each with probability p of success, using the Binomial distribution formula.
+    """
+	# Your code here
+    fact_n=1
+    fact_r=1
+    fact_nr=1
+    for i in range (1,n+1):
+        fact_n=fact_n*i
+    for i in range (1,k+1):
+        fact_r=fact_r*i
+    for i in range (1,n-k+1):
+        fact_nr=fact_nr*i
+
+    ncr=fact_n/(fact_r*fact_nr)
+
+    probability=ncr*(p**k)*((1-p)**(n-k))
+
+
+	return round(probability, 5)
