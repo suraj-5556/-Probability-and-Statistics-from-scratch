@@ -1,0 +1,40 @@
+import numpy as np 
+import math
+def descriptive_statistics(data):
+    mean=sum(data)/len(data)
+
+    if len(data)%2 == 0:
+        median=(sorted(data)[len(data)//2]+sorted(data)[(len(data)//2)-1])/2
+    else:
+        median=sorted(data)[len(data)//2]
+
+    max_freq=0
+    for i in data:
+        if max_freq < data.count(i):
+            max_freq=data.count(i)
+            mode=i
+    count=0
+    for i in data:
+        count=count+(i-mean)**2
+    variance=count/len(data)
+    std_dev=math.sqrt(variance)
+
+    percentiles = [
+        np.percentile(sorted(data), 25),
+        np.percentile(sorted(data), 50),
+        np.percentile(sorted(data), 75)
+    ]
+    iqr=percentiles[2]-percentiles[0]
+	# Your code here
+	stats_dict = {
+        "mean": mean,
+        "median": median,
+        "mode": mode,
+        "variance": np.round(variance,4),
+        "standard_deviation": np.round(std_dev,4),
+        "25th_percentile": percentiles[0],
+        "50th_percentile": percentiles[1],
+        "75th_percentile": percentiles[2],
+        "interquartile_range": iqr
+    }
+	return stats_dict
