@@ -1,0 +1,21 @@
+def calculate_covariance_matrix(vectors: list[list[float]]) -> list[list[float]]:
+	
+    def cov (x1,x2):
+        x1_mean=sum(x1)/len(x1)
+        x2_mean=sum(x2)/len(x2)
+
+        count=0
+
+        for i,j in zip(x1,x2):
+            count = count+(i-x1_mean)*(j-x2_mean)
+        return count/(len(x1)-1)
+
+    result=[]
+    
+    for i in range (0,len(vectors)):
+        temp=[]
+        for j in range (0,len(vectors)):
+            temp.append(cov(vectors[i],vectors[j]))
+        result.append(temp)
+
+	return result
